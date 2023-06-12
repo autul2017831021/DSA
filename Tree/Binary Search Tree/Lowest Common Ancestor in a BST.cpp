@@ -1,18 +1,11 @@
 Node* LCA(Node *root, int a, int b){
     if(root == nullptr)return root;
     while(root != nullptr){
-        if(a >= root->data && b >= root->data){
-            if(a == root->data || b == root->data)return root;
-            root = root->right;
-        }
-        else if(a <= root->data && b <= root->data){
-            if(a == root->data || b == root->data)return root;
-            root = root->left;
-        }
-        else{
-            return root;
-        }
+        if(a > root->data && b > root->data) root = root->right;
+        else if(a < root->data && b < root->data) root = root->left;
+        else return root;
     }
+    return root;
 }
 Node* LCA(Node *root, int n1, int n2){
     if (root == nullptr) return nullptr;
