@@ -28,6 +28,23 @@ void inOrderTraverse(TreeNode *root){
         inOrderTraverse(root->right);
     }
 }
+void inOrderTraverse_loop(TreeNode *root){
+    stack<TreeNode*> s;
+    TreeNode* current = root;
+
+    while (current != nullptr || !s.empty()) {
+        while (current != nullptr) {
+            s.push(current);
+            current = current->left;
+        }
+
+        current = s.top();
+        s.pop();
+        cout << current->value << " ";
+
+        current = current->right;
+    }
+}
 
 TreeNode* minValueNode(TreeNode* node){
     TreeNode* current = node;
@@ -230,7 +247,7 @@ TreeNode* deleteNode(TreeNode* root, int val){
             while(curr->right != nullptr){
                 curr = curr->right;
             }
-            curr->right = temp;
+            curr->right = root->right;
             delete root;
             return succ;
         }
@@ -243,14 +260,21 @@ int main() {
     int root_to_delete, rootNode = randNum();
     cout<<"Root Node : "<<rootNode<<endl;
 
-    TreeNode* root = new TreeNode(rootNode); /// best way
+    TreeNode* root = NULL;
+    root = insert(root,28);
+    insert(root,60);
+    insert(root,4);
+    insert(root,68);
+    insert(root,81);
+    insert(root,58);
+    //TreeNode* root = new TreeNode(rootNode); /// best way
     ///TreeNode* root = insert_loop(NULL, rootNode);
 
-    for(int i=0;i<5;i++){
-        root = insert(root, randNum());
-        ///insert_naive(root, ranNum()); /// flaw exists
-        ///insert_loop(root, randNum());
-    }
+//    for(int i=0;i<5;i++){
+//        root = insert(root, randNum());
+//        ///insert_naive(root, ranNum()); /// flaw exists
+//        ///insert_loop(root, randNum());
+//    }
 
     inOrderTraverse(root); cout<<endl;
 
@@ -259,7 +283,7 @@ int main() {
         root = deleteNode(root, root_to_delete);
         //root = deleteNode_recursive(root, root_to_delete);
         //deleteNode_naive(&root ,root_to_delete);
-        inOrderTraverse(root); cout<<endl;
+        inOrderTraverse_loop(root); cout<<endl;
         if(root == NULL)break;
     }
 }
