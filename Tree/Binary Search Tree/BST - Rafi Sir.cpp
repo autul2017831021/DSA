@@ -77,13 +77,12 @@ int main() {
     insert(root,5);
     insert(root,200);
     insert(root,2);
-    inOrderTraverse(root);
-    cout<<endl;
-    deleteNode(root, 9);
-    inOrderTraverse(root);
-    cout<<endl;
-    deleteNode(root, 2);
-    inOrderTraverse(root);
-    cout<<endl;
+    inOrderTraverse(root); cout<<endl;
+    int root_to_delete;
+    while(scanf("%d",&root_to_delete) != EOF){
+        deleteNode(root ,root_to_delete);
+        inOrderTraverse(root); cout<<endl;
+        if(root == NULL)break;
+    }
     return 0;
 }
