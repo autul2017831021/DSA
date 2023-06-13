@@ -257,33 +257,33 @@ TreeNode* deleteNode(TreeNode* root, int val){
 int main() {
     srand(time(0));
 
-    int root_to_delete, rootNode = randNum();
+    int operation_type,node_to_operate, rootNode = randNum();
     cout<<"Root Node : "<<rootNode<<endl;
 
-    TreeNode* root = NULL;
-    root = insert(root,28);
-    insert(root,60);
-    insert(root,4);
-    insert(root,68);
-    insert(root,81);
-    insert(root,58);
-    //TreeNode* root = new TreeNode(rootNode); /// best way
-    ///TreeNode* root = insert_loop(NULL, rootNode);
+    TreeNode* root = new TreeNode(rootNode);
 
-//    for(int i=0;i<5;i++){
-//        root = insert(root, randNum());
-//        ///insert_naive(root, ranNum()); /// flaw exists
-//        ///insert_loop(root, randNum());
-//    }
+    for(int i=0;i<5;i++){
+        root = insert(root, randNum());
+    }
 
     inOrderTraverse(root); cout<<endl;
 
-    while(scanf("%d",&root_to_delete) != EOF){
-        //insert_loop(root,root_to_delete);
-        root = deleteNode(root, root_to_delete);
-        //root = deleteNode_recursive(root, root_to_delete);
-        //deleteNode_naive(&root ,root_to_delete);
-        inOrderTraverse_loop(root); cout<<endl;
-        if(root == NULL)break;
+    while(1){
+        cout<<"Type 1 to insert a node or 0 to delete a node"<<endl;
+        cin>>operation_type;
+
+        if(operation_type == 1){
+            cout<<"Insert a node into the BST"<<endl;
+            cin>>node_to_operate;
+            root = insert(root,node_to_operate);
+        }
+        else if(operation_type == 0){
+            if(root == NULL)break;
+            cout<<"Delete a node from the BST"<<endl;
+            cin>>node_to_operate;
+            root = deleteNode(root, node_to_operate);
+        }
+        else break;
+        inOrderTraverse(root); cout<<endl;
     }
 }
