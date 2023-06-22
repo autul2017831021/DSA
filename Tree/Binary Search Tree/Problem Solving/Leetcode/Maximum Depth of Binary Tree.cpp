@@ -19,6 +19,10 @@ public:
         logic(root->right,level+1);
         return ans;
     }
+    int logic(TreeNode* root, int level){
+        if(root == NULL)return level-1;
+        return max(logic(root->left,level+1),logic(root->right,level+1));
+    }
     int maxDepth(TreeNode* root) {
         return logic(root,1);
     }
