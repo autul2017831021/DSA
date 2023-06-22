@@ -54,6 +54,7 @@ int main() {
         ///root = insert(root, randNum());
         root = insert_wrong_way(root, randNum());
     }
+
     cout<<isValidBst(root,LONG_MIN,LONG_MAX)<<endl;
 }
 
